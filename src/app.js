@@ -1,58 +1,41 @@
 //write your code here
 
 
-const palabras = ['rock', 'paper', 'scissors', 'lizard', 'spock']
+const palabras= ['rock', 'paper', 'scissors', 'lizard', 'spock']
 
-const jugadaGanadora = ['rock-scissors',
-    'rock-lizards',
-    `paper-rock`,
-    'paper-spock',
-    'scissors-paper',
-    'scissors-lizard',
-    'lizard-paper',
-    'lizard-spok',
-    'spok-scissors',
-    'spok-rock']
-
-
-const machineChoose = (palabras) => {
-
-    let index = Math.floor(Math.random() * palabras.length)
-    return palabras[index]
-
+const reglas= {
+    rock: ['scissors', 'lizard'],
+    paper: ['rock', 'spock'],
+    scissors: ['paper', 'lizard'],
+    lizard: ['paper', 'spock'],
+    spock: ['scissors', 'rock']
 }
 
-function checkGuess() {
+function machineGuess() {
+    return palabras[Math.floor(Math.random() * palabras.length)]
+}
+
+function play(userGuess) {
+
+    let machine = machineGuess()
+    console.log(userGuess);
     
-    let userChoose = prompt('elige entre estas opciones: rock, paper, scissors, lizard, spock').toLowerCase();
-
-    console.log(`User choose: ${userChoose}`);
+    console.log(machine);
     
 
-    let computer = machineChoose(palabras);
-
-    console.log(`Machine choose: ${computer}`);
-    
-    let play = userChoose + '-' + computer
-
-    if (userChoose === computer) {
-        console.log('It`s a draw!!');
-         
-
-    }else if (jugadaGanadora.includes(play)) {
-        console.log(`You win`);
+    if (userGuess === machine) {
+        console.log("It´s a draw");
+    }else if (reglas[userGuess].includes(machine)) {
+        console.log('You win!');
         
     }else {
-        console.log('You loose');
+        console.log('You are losser!');
         
     }
 
 }
 
-
-checkGuess()
- 
-
+play('lizard')
 
 
 
